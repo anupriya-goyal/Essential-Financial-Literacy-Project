@@ -1,0 +1,7 @@
+{
+  "name": "essentials",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

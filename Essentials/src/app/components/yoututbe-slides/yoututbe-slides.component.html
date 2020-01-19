@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="warning" class="ion-text-center">
+    <ion-title>Recommended Videos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="video-background fixedcontent">
+  <ion-slides pager="true" [options]="slideOptsOne">
+    <ion-slide class="card video-shadow" *ngFor="let u of url">
+      <div class="video-container fixed">
+        <iframe
+          [src]="sanitizer.bypassSecurityTrustResourceUrl(u.content)"
+          frameborder="0"
+          width="560"
+          height="315"
+        ></iframe>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

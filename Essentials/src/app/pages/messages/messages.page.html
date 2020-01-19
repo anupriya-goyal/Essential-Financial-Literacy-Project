@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="warning" class="ion-text-center">Messages</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center">
+  <app-logo></app-logo>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-button
+    color="warning"
+    size="small"
+    shape="round "
+    (click)="getUserQuestions()"
+  >
+    <ion-icon name="contact"></ion-icon>
+    Get my questions
+  </ion-button>
+
+  <ion-button
+    color="warning"
+    size="small"
+    shape="round "
+    (click)="writeComment()"
+  >
+    <ion-icon name="chatboxes"></ion-icon>
+    Add question
+  </ion-button>
+  <div [hidden]="userCommenthide" class="ion-text-center" color="warning">
+    <p [ngStyle]="{ color:  'orange'  }">Refresh to get all user questions</p>
+  </div>
+  <ion-list>
+    <ion-item>
+      <ion-label
+        large
+        position="fixed"
+        font-size="2"
+        class="ion-text-left my-label"
+        color="warning"
+        (click)="search()"
+      >
+        <ion-icon name="search"></ion-icon>
+      </ion-label>
+      <ion-label class="ion-text-right" color="warning">
+        Total Questions: {{ size }}
+      </ion-label>
+    </ion-item>
+    <div [hidden]="hidden" class="ion-text-center">
+      <p>Loading data</p>
+      <ion-spinner name="dots"></ion-spinner>
+    </div>
+    <ion-item *ngFor="let type of questions" position="fixed">
+      <div (click)="getComments(type)" class="no-padding">
+        <div (click)="getComments(type)" position="floating">
+          <p
+            class="item-text-wrap"
+            style="font-size:14px;"
+            [ngStyle]="{ color: type.comments.length == 0 ? 'orange' : 'dark' }"
+          >
+            <strong>
+              {{ type.title }}
+            </strong>
+          </p>
+        </div>
+        <div *ngIf="type.comments">
+          <ion-label position="stacked" color="dark">
+            Comments : {{ type.comments.length }}
+          </ion-label>
+          <ion-label *ngIf="type.user" position="stacked" color="dark">
+            Question by : {{ type.user }}
+          </ion-label>
+        </div>
+
+        <div>
+          <ion-icon
+            name="undo"
+            position="fixed"
+            class="ion-text-right"
+            (click)="getComments(type)"
+          ></ion-icon>
+          <p style="font-size:4px; color:white;">
+            ..............................................................................................................................................................................................................................................................
+          </p>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

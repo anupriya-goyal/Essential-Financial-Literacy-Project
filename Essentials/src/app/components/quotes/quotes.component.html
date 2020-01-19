@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="warning" class="ion-text-center">
+    <ion-title>Inspire Me</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fixed">
+  <ion-slides pager="true" [options]="slideOptsOne">
+    <ion-slide class="card " *ngFor="let u of url">
+      <div>
+        <img
+          src="https://famousquotesessential.s3.amazonaws.com/{{ u }}"
+          alt="Essentials logo"
+        />
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="warning" class="ion-text-center">
+    <ion-title>URL Library</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fixedcontent ion-text-center">
+  <ion-slides
+    class="fixed ion-text-center"
+    pager="true"
+    [options]="slideOptsOne"
+  >
+    <ion-slide class="card ion-text-center" *ngFor="let u of data">
+      <div>
+        <ion-card class="fixedSlide1" (click)="navigateLink(u.URLLink)">
+          <ion-item>
+            <ion-label>
+              <ion-icon color="danger" name="link" slot="start"></ion-icon>
+              Check out this link
+            </ion-label>
+          </ion-item>
+
+          <ion-card-content class="fixedSlide1">
+            {{ u.id }}
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
